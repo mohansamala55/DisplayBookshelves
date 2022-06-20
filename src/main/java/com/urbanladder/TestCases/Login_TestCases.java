@@ -13,12 +13,11 @@ public class Login_TestCases extends BaseClass {
 	@Test
 	public void test1() {
 
-		PageBaseClass pagebaseclass = new PageBaseClass();
-		pagebaseclass.invokeBrowser("chrome");
-		landingpage = pagebaseclass.openWedsite();
-		landingpage.doLogin("awesommohan143@gmail.com", "Mohan123$");
-		pagebaseclass.quitBrowser();
-
+		invokeBrowser("chrome");
+		landingpage=openWedsite();
+		landingpage.doLogin("awesomemohan143@gmail.com","Mohan123$");
+		quitBrowser();
+		
 	}
 
 }

@@ -12,6 +12,7 @@ import com.urbanladder.PageClasses.LandingPage;
 public class BaseClass {
 
 	public WebDriver driver;
+	LandingPage landingpage;
 
 	// Invoke browser
 	public void invokeBrowser(String browserName) {

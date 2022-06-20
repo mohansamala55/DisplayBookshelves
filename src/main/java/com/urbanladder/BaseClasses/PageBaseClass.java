@@ -1,9 +1,11 @@
 package com.urbanladder.BaseClasses;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class PageBaseClass extends BaseClass {
+public class PageBaseClass {
 
+	protected WebDriver driver;
 	// Thread sleep
 	public void threadSleep(int t) {
 		try {
