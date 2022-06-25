@@ -2,16 +2,16 @@
 <testng-results total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-20T04:24:47Z" name="Default suite" finished-at="2022-06-20T04:25:13Z" duration-ms="25365">
+  <suite started-at="2022-06-25T08:11:52Z" name="Default suite" finished-at="2022-06-25T08:12:26Z" duration-ms="34710">
     <groups>
     </groups>
-    <test started-at="2022-06-20T04:24:47Z" name="Default test" finished-at="2022-06-20T04:25:13Z" duration-ms="25365">
-      <class name="com.urbanladder.TestCases.Login_TestCases">
-        <test-method signature="test1()[pri:0, instance:com.urbanladder.TestCases.Login_TestCases@8458f04]" started-at="2022-06-20T09:54:47Z" name="test1" finished-at="2022-06-20T09:55:13Z" duration-ms="25328" status="PASS">
+    <test started-at="2022-06-25T08:11:52Z" name="Default test" finished-at="2022-06-25T08:12:26Z" duration-ms="34710">
+      <class name="com.urbanladder.TestCases.BookShelves_TestCases">
+        <test-method signature="displayBookShelves()[pri:0, instance:com.urbanladder.TestCases.BookShelves_TestCases@6fa51cd4]" started-at="2022-06-25T13:41:52Z" name="displayBookShelves" finished-at="2022-06-25T13:42:26Z" duration-ms="34675" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test1 -->
-      </class> <!-- com.urbanladder.TestCases.Login_TestCases -->
+        </test-method> <!-- displayBookShelves -->
+      </class> <!-- com.urbanladder.TestCases.BookShelves_TestCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

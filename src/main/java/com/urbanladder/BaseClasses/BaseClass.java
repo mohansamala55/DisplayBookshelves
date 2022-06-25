@@ -5,16 +5,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.urbanladder.PageClasses.LandingPage;
+
+import utilities.ExtentReportManager;
 
 public class BaseClass {
 
 	public WebDriver driver;
 	LandingPage landingpage;
 
-	// Invoke browser
+	/*************** Invoking browser *************/
 	public void invokeBrowser(String browserName) {
 		if (browserName.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
@@ -29,17 +34,17 @@ public class BaseClass {
 		}
 	}
 
-	// Open website
+	/**************** Opening website *************/
 	public LandingPage openWedsite() {
 		driver.get("https://www.urbanladder.com/");
 		driver.manage().window().maximize();
 		return PageFactory.initElements(driver, LandingPage.class);
-
 	}
 
-	// Quit browser
+	/**************** Closing browser *************/
 	public void quitBrowser() {
 		driver.close();
 		driver.quit();
 	}
+
 }
