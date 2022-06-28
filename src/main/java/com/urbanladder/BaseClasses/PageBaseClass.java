@@ -56,6 +56,12 @@ public class PageBaseClass {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.elementToBeClickable(bookShelfSvg));
 	}
+	
+	// wait until elementToBeIntractable
+		public static void waitTillElementIntractable(WebElement interactElement) {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+			wait.until(ExpectedConditions.elementToBeClickable(interactElement));
+		}
 
 	// wait Till ElementVisible
 	public static void waitTillElementVisible(String locater) {
