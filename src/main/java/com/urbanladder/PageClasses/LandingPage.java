@@ -83,6 +83,22 @@ public class LandingPage extends PageBaseClass {
 		test.log(Status.PASS, "User logged in successfully");
 
 	}
+	public GiftCardsPage loginforgiftcard() {
+		moveTo(SvgElement);
+		waitTillElementClickable(LoginOption);
+		LoginOption.click();
+		waitTillElementVisible("//div[@id='password-credentials']//input[@id='spree_user_email']");
+		test.log(Status.PASS, "Login option clicked sueecssfully");
+		EmailTextbox_login.sendKeys("Namrata@gmail.com");
+		PasswordTextbox_login.sendKeys("Nam123456*");
+		Loginbtn.click();
+		GiftCardsPage giftcardpage = new GiftCardsPage(driver, test);
+		PageFactory.initElements(driver,giftcardpage );
+		return giftcardpage;
+	
+		
+		
+	}
 
 	/**************** Method to click on bookshelves svg element *************/
 	public BookShelvesPage openSvgElement() {
