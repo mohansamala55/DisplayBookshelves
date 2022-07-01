@@ -25,7 +25,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 public class BaseClass {
-
 	public WebDriver driver;
 	LandingPage landingpage;
 	public ExtentHtmlReporter htmlReporter;
@@ -58,6 +57,7 @@ public class BaseClass {
 	}
 
 	/**************** Closing browser *************/
+	@AfterMethod
 	public void quitBrowser() {
 		driver.close();
 		driver.quit();
@@ -89,41 +89,16 @@ public class BaseClass {
 		extent.flush();
 	}
 
-	/**************** This method will run after each test method *************/
-
-	@AfterMethod
-	public void tearDown(ITestResult result) throws IOException {
-		
-		if (result.getStatus() == ITestResult.FAILURE) {
-			test.log(Status.FAIL, "TEST CASE FAILED IS " + result.getName());
-			// to add name in extent report
-			test.log(Status.FAIL, "TEST CASE FAILED IS " + result.getThrowable());
-			// to add error/exception in extent report
-			String screenshotPath = BaseClass.getScreenshot(driver, result.getName());
-			test.addScreenCaptureFromPath(screenshotPath);
-			// adding screen shot
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			test.log(Status.SKIP, "The Case SKIPPED is " + result.getName());
-		} else if (result.getStatus() == ITestResult.SUCCESS) {
-			test.log(Status.PASS, "The Case PASSED is " + result.getName());
-		}
-
-	}
-
 	/**************** Method to take screen short *************/
-	private static String getScreenshot(WebDriver driver, String name) throws IOException {
+	public static String getScreenshot(WebDriver driver, String name) throws IOException {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-
-		// after execution, you could see a folder "FailedTestsScreenshots" under src
-		// folder
 		String destination = System.getProperty("user.dir") + "\\screenshots\\" + dateName + ".png";
 		File finalDestination = new File(destination);
 		try {
 			FileUtils.copyFile(source, finalDestination);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return destination;

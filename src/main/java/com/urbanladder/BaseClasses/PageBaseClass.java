@@ -14,7 +14,6 @@ import org.testng.Assert;
 import com.aventstack.extentreports.ExtentTest;
 
 public class PageBaseClass {
-
 	protected static WebDriver driver;
 	Actions actions;
 
@@ -27,22 +26,11 @@ public class PageBaseClass {
 		}
 	}
 
-	// getText
-	public void getText(String expected) {
-		Assert.assertEquals(expected, driver.getTitle());
-	}
-
 	// To move to any element
 	public void moveTo(WebElement element) {
 		actions = new Actions(driver);
 		actions.moveToElement(element);
 		actions.perform();
-	}
-
-	// Scrolling by Pixel
-	public void scrollByPixel(int x, int y) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(x, y)");
 	}
 
 	// To scroll down the web page by the visibility of the element
@@ -57,12 +45,6 @@ public class PageBaseClass {
 		wait.until(ExpectedConditions.elementToBeClickable(bookShelfSvg));
 	}
 	
-	// wait until elementToBeIntractable
-		public static void waitTillElementIntractable(WebElement interactElement) {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-			wait.until(ExpectedConditions.elementToBeClickable(interactElement));
-		}
-
 	// wait Till ElementVisible
 	public static void waitTillElementVisible(String locater) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));

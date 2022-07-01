@@ -6,8 +6,10 @@ import com.urbanladder.BaseClasses.BaseClass;
 import com.urbanladder.PageClasses.BookShelvesPage;
 import com.urbanladder.PageClasses.LandingPage;
 
+/*
+ * @author Mohan Raj Samala (2148932);
+ */
 public class BookShelves_TestCases extends BaseClass {
-
 	LandingPage landingpage;
 	BookShelvesPage bookShelvePage;
 
@@ -27,7 +29,6 @@ public class BookShelves_TestCases extends BaseClass {
 		// Displaying bookshelves
 		bookShelvePage.toDisplayBookShelves();
 		test.log(Status.PASS, "Book shelves displayed successfully");
-
 	}
 
 }

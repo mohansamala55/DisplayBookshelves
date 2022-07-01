@@ -53,13 +53,25 @@ public class LandingPage extends PageBaseClass {
 
 	@FindBy(xpath = "//*[@id=\"header\"]/div[1]/div/section[3]/ul/li[2]/span/ul/li[1]/a")
 	public WebElement ProfileOption;
-	
+
 	@FindBy(xpath = "//a[@id='logout']")
 	public WebElement Logoutbtn;
-	
-	@FindBy(xpath="//div[normalize-space()='The email or password you entered is incorrect. Please try again.']")
+
+	@FindBy(xpath = "//div[normalize-space()='The email or password you entered is incorrect. Please try again.']")
 	public WebElement errorMsg;
-	
+
+	@FindBy(xpath = "//a[@href='/gift-cards?src=g_footer']")
+	public WebElement giftcardOption;
+
+	@FindBy(xpath = "//input[@value='SUBSCRIBE']")
+	public WebElement subscribebtn;
+
+	@FindBy(xpath = "//*[@id=\'search\']")
+	public WebElement searchbar;
+
+	@FindBy(xpath = "//*[@id=\"urban-ladder-search\"]/form/div/span/div/div/div[1]/strong")
+	public WebElement studychair;
+
 	/**************** Method to do login *************/
 	public void doLogin(String userName, String password) {
 		// Moving to svg element
@@ -75,50 +87,40 @@ public class LandingPage extends PageBaseClass {
 		PasswordTextbox_login.sendKeys(password);
 		// Clicking on login button
 		Loginbtn.click();
+		threadSleep(3);
 		moveTo(SvgElement);
 		threadSleep(3);
 		// Verifying weather user has successfully logged in
-
 		Assert.assertTrue(ProfileOption.isDisplayed());
 		test.log(Status.PASS, "User logged in successfully");
-
 	}
-	public GiftCardsPage loginforgiftcard() {
-		moveTo(SvgElement);
-		waitTillElementClickable(LoginOption);
-		LoginOption.click();
-		waitTillElementVisible("//div[@id='password-credentials']//input[@id='spree_user_email']");
-		test.log(Status.PASS, "Login option clicked sueecssfully");
-		EmailTextbox_login.sendKeys("Namrata@gmail.com");
-		PasswordTextbox_login.sendKeys("Nam123456*");
-		Loginbtn.click();
+
+	/********** Method to open gift cards *********/
+	public GiftCardsPage opengiftCards() {
+		scrollByVisiblityOfElement(subscribebtn);
+		waitTillElementClickable(giftcardOption);
+		giftcardOption.click();
+
 		GiftCardsPage giftcardpage = new GiftCardsPage(driver, test);
-		PageFactory.initElements(driver,giftcardpage );
+		PageFactory.initElements(driver, giftcardpage);
 		return giftcardpage;
-	
-		
-		
 	}
-
 	/**************** Method to click on bookshelves svg element *************/
 	public BookShelvesPage openSvgElement() {
 		scrollByVisiblityOfElement(BookShelfSvg);
 		waitTillElementClickable(BookShelfSvg);
 		BookShelfSvg.click();
 		test.log(Status.PASS, "Bookshelves SVG element clicked successfully");
-
 		BookShelvesPage bookshelvespage = new BookShelvesPage(driver, test);
 		PageFactory.initElements(driver, bookshelvespage);
 		return bookshelvespage;
-		// return PageFactory.initElements(driver, BookShelvesPage.class);
 	}
-
 	/****** Login test method's ***************/
 	public void moveToSVGElement() {
 		moveTo(SvgElement);
 		waitTillElementClickable(LoginOption);
 	}
-
+	
 	public void clickLoginOption() {
 		LoginOption.click();
 		waitTillElementVisible("//div[@id='password-credentials']//input[@id='spree_user_email']");
@@ -160,13 +162,13 @@ public class LandingPage extends PageBaseClass {
 	}
 
 	/****** Method to check user signed successfully ***************/
-	public boolean verifyLoginOrSignup() {
+	public String verifyLoginOrSignup() {
 		moveTo(SvgElement);
 		threadSleep(3);
-		if (LoginOption.isDisplayed()) {
-			return false;
-		}else {
-			return true;
+		if (Logoutbtn.isDisplayed()) {
+			return "Pass";
+		} else {
+			return "Fail";
 		}
 	}
 
@@ -175,5 +177,17 @@ public class LandingPage extends PageBaseClass {
 		moveTo(SvgElement);
 		threadSleep(3);
 		Logoutbtn.click();
+	}
+
+	/****** Method to Search Study chairs ***************/
+	public StudyChairsPage enterStudyChairs() {
+		searchbar.sendKeys("Study Chairs");
+		waitTillElementClickable(studychair);
+		studychair.click();
+
+		StudyChairsPage studychairspage = new StudyChairsPage(driver, test);
+		PageFactory.initElements(driver, studychairspage);
+		return studychairspage;
+
 	}
 }

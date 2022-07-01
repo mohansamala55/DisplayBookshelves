@@ -3,14 +3,11 @@ package com.urbanladder.PageClasses;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import com.aventstack.extentreports.ExtentTest;
 import com.urbanladder.BaseClasses.PageBaseClass;
 
 public class GiftCardsPage extends PageBaseClass {
 	ExtentTest test;
-	@FindBy(xpath = "//*[@id=\"footer-links\"]/div[1]/div[3]/ul/li[2]/a")
-	public WebElement giftcardOption;
 
 	@FindBy(xpath = "//*[@id=\"app-container\"]/div/main/section/section[1]/ul/li[3]/div/div/p")
 	public WebElement birthdayCard;
@@ -39,19 +36,16 @@ public class GiftCardsPage extends PageBaseClass {
 	@FindBy(xpath = "//*[@id=\"app-container\"]/div/main/section/section[3]/form/button")
 	public WebElement confirmBTN;
 
-	// @FindBy(xpath = "")
-	// public WebElement ;
+	@FindBy(xpath = "//h1[normalize-space()='Gift Cards']")
+	public WebElement gificardHeader;
 
 	public GiftCardsPage(WebDriver driver, ExtentTest test) {
-		// TODO Auto-generated constructor stub
-		this.driver=driver;
-		this.test=test;
-		
+		this.driver = driver;
+		this.test = test;
 	}
 
 	public void giftcards() {
-		scrollByVisiblityOfElement(giftcardOption);
-		giftcardOption.click();
+		scrollByVisiblityOfElement(gificardHeader);
 		waitTillElementClickable(birthdayCard);
 		birthdayCard.click();
 		waitTillElementClickable(giftcardPrice);
@@ -64,7 +58,6 @@ public class GiftCardsPage extends PageBaseClass {
 		yourEmail.sendKeys("Jyoti@gmail.com");
 		yourMobile.sendKeys("912765458");
 		confirmBTN.click();
-
 	}
 
 }

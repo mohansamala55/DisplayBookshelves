@@ -12,7 +12,6 @@ import com.aventstack.extentreports.Status;
 import com.urbanladder.BaseClasses.PageBaseClass;
 
 public class BookShelvesPage extends PageBaseClass {
-
 	Actions actions;
 	ExtentTest test;
 
@@ -47,10 +46,10 @@ public class BookShelvesPage extends PageBaseClass {
 
 	/**************** Method to display bookshelves *************/
 	public void toDisplayBookShelves() {
-		
+
 		moveTo(Price);
 		threadSleep(2);
-		actions=new Actions(driver);
+		actions = new Actions(driver);
 		actions.dragAndDropBy(sliderHandil, -199, 0);
 		actions.build().perform();
 		test.log(Status.PASS, "Price adjusted to less then 15000 successfully");
@@ -61,9 +60,7 @@ public class BookShelvesPage extends PageBaseClass {
 		 * 
 		 * CheckBoxOpenType.click(); CheckBoxOpenStorageType.click();
 		 */
-
 		threadSleep(2);
-
 		for (int i = 0; i < names.size(); i++) {
 			System.out.println(names.get(i).getText() + "---" + prices.get(i).getText());
 		}

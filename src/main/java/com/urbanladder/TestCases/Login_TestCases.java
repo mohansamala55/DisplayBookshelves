@@ -14,15 +14,15 @@ import com.urbanladder.PageClasses.LandingPage;
 
 import utilities.XLUtility;
 
+/*
+ * @author Nikilesh Kumar (2165019);
+ */
 public class Login_TestCases extends BaseClass {
-
 	LandingPage landingpage;
 
 	@Test(dataProvider = "LoginData")
 	public void Login_Test(String Username, String Password, String Exp_Result) {
-
 		test = extent.createTest("Login test");
-
 		invokeBrowser("chrome");
 		landingpage = openWedsite();
 		landingpage.moveToSVGElement();
@@ -30,46 +30,37 @@ public class Login_TestCases extends BaseClass {
 		landingpage.enterEmail_login(Username);
 		landingpage.enterPassword_login(Password);
 		landingpage.clickLoginbtn();
+		landingpage.verifyLoginOrSignup();
+		
+			if (Exp_Result.equalsIgnoreCase("Valid")) {
+				if (landingpage.verifyLoginOrSignup() == "Pass") {
+					Assert.assertTrue(true);
+				} else {
+					Assert.assertTrue(false);
+				}
+			} else if (Exp_Result.equalsIgnoreCase("Invalid")) {
+				if (landingpage.verifyLoginOrSignup() == "Fail") {
+					Assert.assertTrue(true);
+				} else {
+					Assert.assertTrue(false);
+				}
+			}
+		} 
 
-		if (Exp_Result.equalsIgnoreCase("Valid")) {
-			if (landingpage.verifyLoginOrSignup() == true) {
-				landingpage.logout();
-				Assert.assertTrue(true);
-				quitBrowser();
-			} else {
-				Assert.assertTrue(false);
-				quitBrowser();
-			}
-		} else if (Exp_Result.equalsIgnoreCase("Invalid")) {
-			if (landingpage.verifyLoginOrSignup() == false) {
-				Assert.assertTrue(true);
-			} else {
-				landingpage.logout();
-				Assert.assertTrue(false);
-			}
-		}
-		quitBrowser();
-	}
 
 	@DataProvider(name = "LoginData")
 	public String[][] getData() throws IOException {
-
-		String path = "C:\\Users\\mohan\\Desktop\\DisplayBookShelves\\TestCaseData\\TestData.xlsx";
+		String path = ".\\TestCaseData\\TestData.xlsx";
 		XLUtility xlutil = new XLUtility(path);
-
 		int totalrows = xlutil.getRowCount("Login_data");
 		int totalcols = xlutil.getCellCount("Login_data", 1);
-
 		String loginData[][] = new String[totalrows][totalcols];
-
 		for (int r = 1; r <= totalrows; r++) {
 
 			for (int c = 0; c < totalcols; c++) {
 				loginData[r - 1][c] = xlutil.getCellData("Login_data", r, c);
 			}
 		}
-
 		return loginData;
 	}
-
 }
